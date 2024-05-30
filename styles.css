@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --index: calc(1vw + 1vh);
+  --transition: 1.5s cubic-bezier(0.05, 0.5, 0, 1);
+  --logo: calc(var(--index) * 7);
+}
+
+@font-face {
+  font-family: kamerik-3d;
+  src: url(fonts/kamerik205-heavy.woff2);
+}
+
+@font-face {
+  font-family: merriweather-italic-3d;
+  src: url(fonts/merriweather-regular-italic.woff2);
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: kamerik-3d;
+}
+
+.logo {
+  width: var(--index);
+  height: var(--index);
+  position: absolute;
+  z-index: 1;
+  left: calc(50% - calc(var(--logo) / 2));
+  top: calc(var(--index) * 2.8);
+}
+
+.logo img {
+  width: var(--logo);
+  height: var(--logo);
+}
+
+.layers {
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.layers__container {
+  height: 100vh;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+  will-change: transform;
+  transition: transform var(--transition);
+}
+
+.layers__item {
+  position: absolute;
+  inset: -5vw;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-1 {
+  transform: translateZ(-60px) scale(1.11);
+}
+
+.layer-2 {
+  transform: translateZ(100px) scale(0.92);
+}
+
+.layer-3 {
+  transform: translateZ(180px) scale(0.8);
+}
+
+.layer-4 {
+  transform: translateZ(190px) scale(0.9);
+}
+
+.layer-5 {
+  transform: translateZ(300px) scale(0.88);
+}
+
+.layer-6 {
+  transform: translateZ(380px);
+}
+
+.hero-content {
+  text-align: center;
+  user-select: none;
+}
+
+.hero-content h1 {
+  font-size: calc(var(--index) * 4);
+  text-transform: uppercase;
+  letter-spacing: calc(var(--index) * -0.15);
+  line-height: 1.35em;
+  margin-top: calc(var(--index) * 5);
+}
+
+.hero-content h4 {
+  font-size: calc(var(--index) * 1);
+  font-family: merriweather-italic-3d;
+}
+
+.hero-content span {
+  display: block;
+}
+
+.button-start {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: calc(var(--index) * 0.6);
+  margin-top: calc(var(--index) * 5);
+  padding: calc(var(--index) * 0.7) calc(var(--index) * 1.25);
+  background-color: transparent;
+  color: #fff;
+  border-radius: 10em;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-start:hover {
+  transform: translateY(-10px);
+  opacity: 0.8;
+}
+
+.layer-4,
+.layer-5,
+.layer-6 {
+  pointer-events: none;
+}
+
+@media screen and (max-height: 900px) {
+  .logo {
+    top: calc(var(--index) * 0.1);
+  }
+}
